@@ -33,7 +33,7 @@ include("functions.php");
       <section class="wrapper">
       <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-user-md"></i> Website URLs</h3>
+                <h3 class="page-header"><i class="fa fa-user-md"></i> Website </h3>
                 <form action = "displayWebComments.php" method = "post">
                     <select class="js-example-basic-single" name="URLs">
                         <?php

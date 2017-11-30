@@ -33,11 +33,11 @@ include("functions.php");
       <section class="wrapper">
       <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-user-md"></i> Thread </h3>
-                <form action = "displayThreadComments.php" method = "post">
+                <h3 class="page-header"><i class="fa fa-user-md"></i> Accounts</h3>
+                <form action = "displayAccountComments.php" method = "post">
                     <select class="js-example-basic-single" name="URLs">
                         <?php
-                            $result = allThreadUrls();
+                            $result = allAccounts();
 
                             while($vals = mysqli_fetch_array($result)){
                                 

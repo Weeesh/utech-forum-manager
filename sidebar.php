@@ -12,21 +12,37 @@
               <li class="sub-menu">
                   <a href="javascript:;" class="">
                       
-                      <span>Searching</span>
+                      <span>Website </span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>
                   <ul class="sub">
-                      <li><a class="" href="webSearch.php">Website URL</a></li>
-                      <li><a class="" href="threadSearch.php">Thread URL</a></li>
-                      <li><a class="" href="accountSearch.php">Account</a></li>
-                      <li><a class="" href="dateSearch.php">Date</a></li>
-                      <li><a class="" href="genreSearch.php">Genre</a></li>
+                      <li><a class="" href="webSearch.php">Website Comments</a></li>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      
+                      <span>Thread</span>
+                      <span class="menu-arrow arrow_carrot-right"></span>
+                  </a>
+                  <ul class="sub">
+                      <li><a class="" href="threadSearch.php">Thread Comments</a></li>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      
+                      <span>Accounts</span>
+                      <span class="menu-arrow arrow_carrot-right"></span>
+                  </a>
+                  <ul class="sub">
+                      <li><a class="" href="accountSearch.php">Account Comments</a></li>  
                   </ul>
               </li>
               <li class="sub-menu">
                   <a href="javascript:;" class="">
                       <i class="icon_desktop"></i>
-                      <span>Reports</span>
+                      <span>Add</span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>
                   <ul class="sub">

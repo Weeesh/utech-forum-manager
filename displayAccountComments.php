@@ -33,7 +33,7 @@ include("functions.php");
         <section class="wrapper">
         <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-user-md"></i> Thread</h3>
+                    <h3 class="page-header"><i class="fa fa-user-md"></i> Accounts</h3>
                     <table class = "table">
                         <thead>
                             <th>Thread URL</th>
@@ -45,7 +45,7 @@ include("functions.php");
                         </thead>
                         <tbody>
                             <?php
-                                $result = threadUrlCommentSearch($_POST['URLs']);
+                                $result = accountCommentSearch($_POST['URLs']);
 
                                 while($vals = mysqli_fetch_array($result)){
                                     echo "<tr>";

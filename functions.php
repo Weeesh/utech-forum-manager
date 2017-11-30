@@ -46,4 +46,27 @@
 
     }
 
+    function allAccounts(){
+        global $conn;
+        
+        $query = "SELECT `username` 
+                  FROM `accounts`";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+
+    }
+
+    function accountCommentSearch($url){
+        global $conn;
+        
+        $query = "SELECT `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account` 
+                  FROM `comments` 
+                  WHERE `account` = '$url'";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+
+    }
+
 ?>
