@@ -33,28 +33,27 @@ include("functions.php");
         <section class="wrapper">
         <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-user-md"></i> Thread</h3>
+                    <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['URLs'];?></h3>
                     <table class = "table">
                         <thead>
-                            <th>Thread URL</th>
-                            <th>Website Home URL</th>
                             <th>Comment URL</th>
                             <th>Date Posted</th>
                             <th>Comment</th>
-                            <th>Account</th>
+                            <th>Username</th>
+                            <th>Password</th>
                         </thead>
                         <tbody>
                             <?php
                                 $result = threadUrlCommentSearch($_POST['URLs']);
 
                                 while($vals = mysqli_fetch_array($result)){
+                                    
                                     echo "<tr>";
                                         echo "<td>".$vals[0]."</td>";
                                         echo "<td>".$vals[1]."</td>";
                                         echo "<td>".$vals[2]."</td>";
                                         echo "<td>".$vals[3]."</td>";
-                                        echo "<td>".$vals[4]."</td>";
-                                        echo "<td>".$vals[5]."</td>";
+                                        //echo "<td>".$vals[4]."</td>";
                                     echo "</tr>";
                                 }
                             ?>

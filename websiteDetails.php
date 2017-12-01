@@ -41,7 +41,7 @@ include("functions.php");
                             <th># of Comments</th>
                         </thead>
                         <tbody>
-                            <form action = "threadDetails.php" method = "post">
+                            <form action = "displayThreadComments.php" method = "post">
                             
                                 <?php
                                     $result = threadSearch($_POST['URLs']);
@@ -51,7 +51,7 @@ include("functions.php");
                                         $comment = threadUrlCommentSearch($vals[1]);
                                         $commentNum = mysqli_num_rows($comment);
                                         echo "<tr>";
-                                            echo "<td><input type ='submit' value = ".$vals[0]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'></td>";
+                                            echo "<td><button type ='submit' value = ".$vals[1]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>".$vals[0]."</button></td>";
                                             echo "<td>".$commentNum."</td>";
                                         echo "</tr>";
                                     }
