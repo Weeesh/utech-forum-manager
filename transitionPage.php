@@ -33,22 +33,19 @@ include("functions.php");
       <section class="wrapper">
       <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-user-md"></i> Website </h3>
-                <form action = "showThreads.php" method = "post">
-                    <select class="js-example-basic-single" name="URLs">
-                        <?php
-                            $result = allWebUrls();
-
-                            while($vals = mysqli_fetch_array($result)){
-                                
-                                echo "<option value = ".$vals[0].">".$vals[0]."</option>";
-                            }
-                        ?>
-                    </select>	
-                    <br><br>
-                    <input type="submit">
+                <h3 class="page-header"><i class="fa fa-user-md"></i> Genre</h3>
+                <form action = "displayWebPages.php" method = "post">
+                    <?php 
+                        $vals = $_POST['URLs'];
+                        echo "<button type ='submit' value = ".$vals." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>Forums</button>";
+                    ?>
                 </form>
-
+                <form action = "" method = "post">
+                    <?php 
+                        $vals = $_POST['URLs'];
+                        echo "<button type ='submit' value = ".$vals." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>Reviews</button>";
+                    ?>
+                </form>
             </div>
         </div>
         
@@ -61,7 +58,7 @@ include("functions.php");
 <!-- container section end -->
 <?php include("javascriptScripts.php") ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js">
+<script>
 
   //knob
   $(".knob").knob();
@@ -69,6 +66,7 @@ include("functions.php");
     $('.js-example-basic-single').select2();
 });
 
+</script>
 
 
 </body>

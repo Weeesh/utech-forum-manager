@@ -1,6 +1,28 @@
 <?php
     require("dbcon.php");
 
+
+    function allGenres(){
+        global $conn;
+        
+        $query = "SELECT DISTINCT `genre` 
+                  FROM `website` ";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+    }
+
+    function webGenreSearch($url){
+        global $conn;
+        
+        $query = "SELECT `URL` 
+                  FROM `website` 
+                  WHERE `genre` = '$url'";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+    }
+
     function allWebUrls(){
         global $conn;
 
@@ -11,6 +33,17 @@
         return $result;
     }
 
+    function threadSearch($url){
+        global $conn;
+
+        $query = "SELECT `thread_name`, `thread_url`, `genre` 
+        FROM `thread` 
+        WHERE `website_url` = '$url'";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+
+    }
 
     function webUrlCommentSearch($url){
         global $conn;

@@ -33,20 +33,20 @@ include("functions.php");
       <section class="wrapper">
       <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-user-md"></i> Website </h3>
-                <form action = "showThreads.php" method = "post">
-                    <select class="js-example-basic-single" name="URLs">
+                <h3 class="page-header"><i class="fa fa-user-md"></i> Genre</h3>
+                <form action = "transitionPage.php" method = "post">
+                
                         <?php
-                            $result = allWebUrls();
+                            $result = allGenres();
 
                             while($vals = mysqli_fetch_array($result)){
                                 
-                                echo "<option value = ".$vals[0].">".$vals[0]."</option>";
+                                echo "<input type ='submit' value = ".$vals[0]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>";
+                                echo "<br>";
                             }
                         ?>
-                    </select>	
+                	
                     <br><br>
-                    <input type="submit">
                 </form>
 
             </div>
@@ -61,7 +61,7 @@ include("functions.php");
 <!-- container section end -->
 <?php include("javascriptScripts.php") ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js">
+<script>
 
   //knob
   $(".knob").knob();
@@ -69,6 +69,7 @@ include("functions.php");
     $('.js-example-basic-single').select2();
 });
 
+</script>
 
 
 </body>
