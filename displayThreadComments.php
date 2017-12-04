@@ -57,7 +57,8 @@ include("functions.php");
                                         echo "<td>".$vals[0]."</td>";  //Comment URL
                                         echo "<td></td>";
                                         echo "<td>".$vals[3]."</td>";  //Username
-                                        //echo "<td>".$vals[4]."</td>";
+                                        echo "<td></td>";
+                                        echo "<td>".$vals[4]."</td>";  //Agent
                                     echo "</tr>";
                                 }
                             ?>

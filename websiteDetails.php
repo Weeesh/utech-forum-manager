@@ -42,7 +42,7 @@ include("functions.php");
                         </thead>
                         <tbody>
                             <?php
-                                $result = allAccounts();
+                                $result = allWebAccounts($_POST['URLs']);
 
                                 while($vals = mysqli_fetch_array($result)){
                                     echo "<tr>";
@@ -54,7 +54,6 @@ include("functions.php");
                             ?>
                         </tbody>
                     </table>
-
                     <table class = "table">
                         <thead>
                             <th>Thread Name</th>
@@ -62,7 +61,6 @@ include("functions.php");
                         </thead>
                         <tbody>
                             <form action = "displayThreadComments.php" method = "post">
-                            
                                 <?php
                                     $result = threadSearch($_POST['URLs']);
 

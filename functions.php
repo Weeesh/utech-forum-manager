@@ -70,7 +70,7 @@
     function threadUrlCommentSearch($url){
         global $conn;
         
-        $query = "SELECT DISTINCT `comment_url`, `date_posted`, `comment`, `account` 
+        $query = "SELECT DISTINCT `comment_url`, `date_posted`, `comment`, `account`, `agent`, `backlink` 
                   FROM `comments` 
                   WHERE `thread_url` = '$url'";
         $result = mysqli_query($conn,$query);
@@ -86,6 +86,18 @@
                   FROM `accounts`";
         $result = mysqli_query($conn,$query);
 
+        return $result;
+
+    }
+
+    function allWebAccounts($url){
+        global $conn;
+
+        $query = "SELECT DISTINCT a.username, a.password 
+                  FROM accounts a, website w, thread t
+                  WHERE w.URL = a.website_url  AND w.URL = '$url'";
+        $result = mysqli_query($conn,$query);
+        
         return $result;
 
     }
@@ -107,7 +119,7 @@
     function accountCommentSearch($url){
         global $conn;
         
-        $query = "SELECT `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account` 
+        $query = "SELECT `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account`, 
                   FROM `comments` 
                   WHERE `account` = '$url'";
         $result = mysqli_query($conn,$query);
