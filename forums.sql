@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2017 at 07:36 AM
+-- Generation Time: Dec 04, 2017 at 11:04 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -55,20 +55,22 @@ CREATE TABLE `comments` (
   `comment_url` text NOT NULL,
   `date_posted` date NOT NULL,
   `comment` text NOT NULL,
-  `account` varchar(20) NOT NULL
+  `account` varchar(20) NOT NULL,
+  `Agent` varchar(20) NOT NULL,
+  `Backlink` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account`) VALUES
-(1, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#1', '2017-11-01', 'testing testing 123', 'testerA'),
-(2, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#2', '2017-11-02', 'hahahaha', 'testerA'),
-(3, 'trackidog.com/testing1', 'trackidog.com', 'trackidog.com/testing1/#1', '2017-11-03', 'test', 'testerB'),
-(4, 'trackimo.com/testing2', 'trackimo.com', 'trackimo.com/testing2/#1', '2017-11-04', 'asdasdasd', 'testerA'),
-(5, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#3', '2017-11-05', 'hello', 'testerC'),
-(6, 'trackidog.com/doggos', 'trackidog.com', 'trackidog.com/doggos/#1', '2017-11-08', 'doggo', 'testerB');
+INSERT INTO `comments` (`id`, `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account`, `Agent`, `Backlink`) VALUES
+(1, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#1', '2017-11-01', 'testing testing 123', 'testerA', 'Jackson', ''),
+(2, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#2', '2017-11-02', 'hahahaha', 'testerA', 'Jackson', ''),
+(3, 'trackidog.com/testing1', 'trackidog.com', 'trackidog.com/testing1/#1', '2017-11-03', 'test', 'testerB', 'Michael', ''),
+(4, 'trackimo.com/testing2', 'trackimo.com', 'trackimo.com/testing2/#1', '2017-11-04', 'asdasdasd', 'testerA', 'Jackson', ''),
+(5, 'trackimo.com/testing1', 'trackimo.com', 'trackimo.com/testing1/#3', '2017-11-05', 'hello', 'testerC', 'Jordan', ''),
+(6, 'trackidog.com/doggos', 'trackidog.com', 'trackidog.com/doggos/#1', '2017-11-08', 'doggo', 'testerB', 'Michael', '');
 
 -- --------------------------------------------------------
 
