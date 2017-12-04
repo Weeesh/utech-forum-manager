@@ -12,12 +12,13 @@
               <li class="sub-menu">
                   <a href="javascript:;" class="">
                       
-                      <span>Genre </span>
+                      <span>Choose Account</span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>
                   <ul class="sub">
-                      <li><a class="" href="showGenre.php">Choose Genre</a></li>
-                      <li><a class="" href="">Reports</a></li>
+                      <li><a class="" href="showGenre.php">Trackimo</a></li>
+                      <li><a class="" href="showGenre.php">Trackidog</a></li>
+                      <li><a class="" href="showGenre.php">Some other website</a></li>
                   </ul>
               </li>
 

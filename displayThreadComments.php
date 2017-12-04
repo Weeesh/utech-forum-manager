@@ -36,11 +36,14 @@ include("functions.php");
                     <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['URLs'];?></h3>
                     <table class = "table">
                         <thead>
-                            <th>Comment URL</th>
                             <th>Date Posted</th>
                             <th>Comment</th>
+                            <th>Comment URL</th>
+                            <th>Account Name</th>
                             <th>Username</th>
                             <th>Password</th>
+                            <th>Agent</th>
+                            <th>Backlink</th>
                         </thead>
                         <tbody>
                             <?php
@@ -49,10 +52,11 @@ include("functions.php");
                                 while($vals = mysqli_fetch_array($result)){
                                     
                                     echo "<tr>";
-                                        echo "<td>".$vals[0]."</td>";
-                                        echo "<td>".$vals[1]."</td>";
-                                        echo "<td>".$vals[2]."</td>";
-                                        echo "<td>".$vals[3]."</td>";
+                                        echo "<td>".$vals[1]."</td>";  // Date Posted
+                                        echo "<td>".$vals[2]."</td>";  // Comment
+                                        echo "<td>".$vals[0]."</td>";  //Comment URL
+                                        echo "<td></td>";
+                                        echo "<td>".$vals[3]."</td>";  //Username
                                         //echo "<td>".$vals[4]."</td>";
                                     echo "</tr>";
                                 }

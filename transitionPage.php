@@ -46,6 +46,18 @@ include("functions.php");
                         echo "<button type ='submit' value = ".$vals." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>Reviews</button>";
                     ?>
                 </form>
+                <form action = "" method = "post">
+                    <?php 
+                        $vals = $_POST['URLs'];
+                        echo "<button type ='submit' value = ".$vals." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>Writer</button>";
+                    ?>
+                </form>
+                <form action = "" method = "post">
+                    <?php 
+                        $vals = $_POST['URLs'];
+                        echo "<button type ='submit' value = ".$vals." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>Research</button>";
+                    ?>
+                </form>
             </div>
         </div>
         

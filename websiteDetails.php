@@ -37,6 +37,26 @@ include("functions.php");
                     <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['URLs'];?></h3>
                     <table class = "table">
                         <thead>
+                            <th>Usernames</th>
+                            <th>Passwords</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $result = allAccounts();
+
+                                while($vals = mysqli_fetch_array($result)){
+                                    echo "<tr>";
+                                            echo "<td>".$vals[0]."</td>";
+                                            echo "<td>".$vals[1]."</td>";
+                                    echo "</tr>";
+                                }
+
+                            ?>
+                        </tbody>
+                    </table>
+
+                    <table class = "table">
+                        <thead>
                             <th>Thread Name</th>
                             <th># of Comments</th>
                         </thead>

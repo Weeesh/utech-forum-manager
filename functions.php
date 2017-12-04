@@ -82,7 +82,7 @@
     function allAccounts(){
         global $conn;
         
-        $query = "SELECT `username` 
+        $query = "SELECT `username`, `password` 
                   FROM `accounts`";
         $result = mysqli_query($conn,$query);
 
@@ -101,6 +101,8 @@
         return $result;
 
     }
+
+
 
     function accountCommentSearch($url){
         global $conn;
