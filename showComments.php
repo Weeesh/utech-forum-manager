@@ -2,6 +2,7 @@
 
 require("dbcon.php");
 include("functions.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -47,51 +48,35 @@ include("functions.php");
                         </thead>
                         <tbody>
                             <?php
-                                $result = allComments($_POST['thread_id']);
+                                // $result = allComments($_POST['thread_id']);
 
-                                while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                // while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                                     
-                                    echo "<tr>";
-                                        echo "<td>".$vals['date_posted']."</td>";  // Date Posted
-                                        echo "<td>".$vals['comment']."</td>";  // Comment
-                                        echo "<td>".$vals['comment_url']."</td>";  //Comment URL
-                                        echo "<td>".$vals['account']."</td>";
-                                        echo "<td>adamsNancy</td>";  //Username
-                                        echo "<td>BTs61313@</td>"; //password
-                                        echo "<td>".$vals['Agent']."</td>";  //Agent
-                                        echo "<td>".$vals['Backlink']."</td>";  //Backlink
-                                    echo "</tr>";
-                                }
+                                //     echo "<tr>";
+                                //         echo "<td>".$vals['date_posted']."</td>";  // Date Posted
+                                //         echo "<td>".$vals['comment']."</td>";  // Comment
+                                //         echo "<td>".$vals['comment_url']."</td>";  //Comment URL
+                                //         echo "<td>".$vals['account']."</td>";
+                                //         echo "<td>adamsNancy</td>";  //Username
+                                //         echo "<td>BTs61313@</td>"; //password
+                                //         echo "<td>".$vals['Agent']."</td>";  //Agent
+                                //         echo "<td>".$vals['Backlink']."</td>";  //Backlink
+                                //     echo "</tr>";
+                                // }
                             ?>
                         </tbody>
                     </table>
-                    <!-- <table class = "table">
-                        <?php
-                            // $file = fopen("seo.csv","r");
-                            // $csv = getcsvheader();
-                            // $max = count($csv);
-
-                            // echo "<thead>";
-                            // echo "<tr>";
-                            // for($x=0;$x<$max;$x++){
-                            //     echo"<th>".$csv[$x]."</th>";
-                            // }
-                            // echo"<tr>";
-                            // echo"</thead>";
-                            // echo"<tbody>";
-                            
-                            // $csv=fgetcsv($file);
-                            // while(! feof($file)){
-                            //     $csv=fgetcsv($file);
-                            //     echo "<tr>";
-                            //     for($x=0;$x<$max;$x++){
-                            //         echo"<td><div style='width:11em;word-wrap:break-word;'>".$csv[$x]."</div></td>";
-                            //     }
-                            //     echo"<tr>";
-                            // }
-                            // echo"</tbody>";
-                        ?>
-                    </table> -->
+                    <form>
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                        <input type="text" name="">
+                    </form>
+                    <button id=addComment>Add Comment</button>
                 </div>
             </div>
             

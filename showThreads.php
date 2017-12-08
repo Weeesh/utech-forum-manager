@@ -2,6 +2,7 @@
 
 require("dbcon.php");
 include("functions.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +36,7 @@ include("functions.php");
             <div class="col-lg-12">
                 <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['account']." - ".$_POST['genre'].":".$_POST['niche']." - ".$_POST['media'];  ?> </h3>
                 
+
                         <?php
                             $result = allThread($_POST['media_id']);
 

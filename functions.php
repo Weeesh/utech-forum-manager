@@ -1,6 +1,13 @@
 <?php
     require("dbcon.php");
 
+    function sessionChecker(){
+        session_start();
+        if(!isset($_SESSION)){
+            header("Location: login.php");
+        }
+    }
+
     function allAccounts(){
         global $conn;
 
