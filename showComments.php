@@ -66,15 +66,15 @@ include("functions.php");
                             ?>
                         </tbody>
                     </table>
-                    <form>
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
-                        <input type="text" name="">
+                    <form id="inputComment">
+                        Date:<input type="text" name="date">
+                        Comment:<input type="text" name="comment">
+                        Comment URL:<input type="text" name="url">
+                        Account:<input type="text" name="account">
+                        Username:<input type="text" name="username">
+                        Password:<input type="text" name="password">
+                        Agent:<input type="text" name="agent">
+                        Backlink:<input type="text" name="backlink">
                     </form>
                     <button id=addComment>Add Comment</button>
                 </div>
