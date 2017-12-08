@@ -48,34 +48,41 @@ include("functions.php");
                         </thead>
                         <tbody>
                             <?php
-                                // $result = allComments($_POST['thread_id']);
+                                $result = allComments($_POST['thread_id']);
 
-                                // while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                                     
-                                //     echo "<tr>";
-                                //         echo "<td>".$vals['date_posted']."</td>";  // Date Posted
-                                //         echo "<td>".$vals['comment']."</td>";  // Comment
-                                //         echo "<td>".$vals['comment_url']."</td>";  //Comment URL
-                                //         echo "<td>".$vals['account']."</td>";
-                                //         echo "<td>adamsNancy</td>";  //Username
-                                //         echo "<td>BTs61313@</td>"; //password
-                                //         echo "<td>".$vals['Agent']."</td>";  //Agent
-                                //         echo "<td>".$vals['Backlink']."</td>";  //Backlink
-                                //     echo "</tr>";
-                                // }
+                                    echo "<tr>";
+                                        echo "<td>".$vals['date_posted']."</td>";  // Date Posted
+                                        echo "<td>".$vals['comment']."</td>";  // Comment
+                                        echo "<td>".$vals['comment_url']."</td>";  //Comment URL
+                                        echo "<td>".$vals['account']."</td>";
+                                        echo "<td>adamsNancy</td>";  //Username
+                                        echo "<td>BTs61313@</td>"; //password
+                                        echo "<td>".$vals['Agent']."</td>";  //Agent
+                                        echo "<td>".$vals['Backlink']."</td>";  //Backlink
+                                    echo "</tr>";
+                                }
                             ?>
                         </tbody>
                     </table>
-                    <form id="inputComment">
-                        Date:<input type="text" name="date">
-                        Comment:<input type="text" name="comment">
-                        Comment URL:<input type="text" name="url">
-                        Account:<input type="text" name="account">
-                        Username:<input type="text" name="username">
-                        Password:<input type="text" name="password">
-                        Agent:<input type="text" name="agent">
-                        Backlink:<input type="text" name="backlink">
+                    <form id="inputComment" style="display:none">
+                        Date:       <input type="text" id="date" name="date"><br>
+                        Comment:    <input type="text" id="comment" name="comment"><br>
+                        Comment URL:<input type="text" id="url" name="url"><br>
+                        Account:    <input type="text" id="account" name="account"><br>
+                        Username:   <input type="text" id="username" name="username"><br>
+                        Password:   <input type="text" id="password" name="password"><br>
+                        Agent:      <input type="text" id="agent" name="agent"><br>
+                        Backlink:   <input type="text" id="backlink" name="backlink"><br>
+                        <input type="submit" value="Submit"><br>
                     </form>
+                    <!-- <select id="dude">
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                    </select> -->
                     <button id=addComment>Add Comment</button>
                 </div>
             </div>
@@ -93,9 +100,44 @@ include("functions.php");
 
   //knob
   $(".knob").knob();
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
+    $("#dude").change(function(){
+        console.log($("#dude").val());
+    });
+    $("#addComment").click(function(){
+        $("#inputComment").show();
+    });
+    $(document).on("submit" , "#inputComment" ,function(e){
+        e.preventDefault();
+        var data = {
+            Date:$('#date').val(),
+            Comment: $('#comment').val(),
+            url:$('#url').val(),
+            Account:$('#account').val(),
+            Username:$('#username').val(),
+            Password:$('#password').val(),
+            Agent:$('#agent').val(),
+            Backlink:$('#backlink').val()
+        };
+        ajax(data);
+    });
+
+    function ajax(data) {
+        var request;
+
+        console.log(data);
+
+        request=$.ajax({
+            type: 'POST',
+            url: 'functions.php',
+            data: data
+            });
+        request.done(function (response) {
+            alert("Success");
+        });
+        request.fail(function (error) {
+            swal("Failure");
+        });
+    }
 
 </script>
 

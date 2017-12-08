@@ -1,6 +1,13 @@
 <?php
     require("dbcon.php");
 
+    function addComment(){
+        $data=$_POST["data"];
+        $query="SELECT
+                FROM
+                WHERE";
+    }
+
     function sessionChecker(){
         session_start();
         if(!isset($_SESSION)){
