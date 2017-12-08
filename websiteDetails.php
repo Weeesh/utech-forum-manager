@@ -37,12 +37,30 @@ include("functions.php");
                     <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['URLs'];?></h3>
                     <table class = "table">
                         <thead>
+                            <th>Usernames</th>
+                            <th>Passwords</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $result = allWebAccounts($_POST['URLs']);
+
+                                while($vals = mysqli_fetch_array($result)){
+                                    echo "<tr>";
+                                            echo "<td>".$vals[0]."</td>";
+                                            echo "<td>".$vals[1]."</td>";
+                                    echo "</tr>";
+                                }
+
+                            ?>
+                        </tbody>
+                    </table>
+                    <table class = "table">
+                        <thead>
                             <th>Thread Name</th>
                             <th># of Comments</th>
                         </thead>
                         <tbody>
-                            <form action = "threadDetails.php" method = "post">
-                            
+                            <form action = "displayThreadComments.php" method = "post">
                                 <?php
                                     $result = threadSearch($_POST['URLs']);
 
@@ -50,8 +68,9 @@ include("functions.php");
 
                                         $comment = threadUrlCommentSearch($vals[1]);
                                         $commentNum = mysqli_num_rows($comment);
+                                        
                                         echo "<tr>";
-                                            echo "<td><input type ='submit' value = ".$vals[0]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'></td>";
+                                            echo "<td><button type ='submit' value = ".$vals[1]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>".$vals[0]."</button></td>";
                                             echo "<td>".$commentNum."</td>";
                                         echo "</tr>";
                                     }
@@ -59,6 +78,7 @@ include("functions.php");
                             </form>
                         </tbody>
                     </table>
+
                 </div>
             </div>
             
