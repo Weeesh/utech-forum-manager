@@ -80,18 +80,6 @@ include("functions.php");
                             <button id="removeComment">Remove Comment</button>
                             <button id="getDate">This month</button>
                         </div>
-                        <!-- <form id="inputComment" >
-                            Date:       <input type="date" id="date" name="date"><br>
-                            Comment:    <input type="text" id="comment" name="comment"><br>
-                            Comment URL:<input type="text" id="url" name="url"><br>
-                            Account:    <input type="text" id="account" name="account"><br>
-                            Username:   <input type="text" id="username" name="username"><br>
-                            Password:   <input type="text" id="password" name="password"><br>
-                            Agent:      <input type="text" id="agent" name="agent"><br>
-                            Backlink:   <select name="backlink" id="backlink">
-                                            <option value="No">No</option>
-                                            <option value="Yes">Yes</option>
-                                        </select><br> -->
                         <?php 
                             echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
                             echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
@@ -112,15 +100,7 @@ include("functions.php");
                             $result = allThread($_POST['thread_id']);
                             $vals = mysqli_fetch_array($result, MYSQLI_ASSOC);
                             echo "<input type='text' value=".$vals['thread_url']." id='thread_url' name='thread_url' hidden>";
-                        ?><!-- 
-                            <input type="submit" value="Submit"><br>
-                        </form> -->
-                        <!-- <select id="dude">
-                            <option value="1st">1st</option>
-                            <option value="2nd">2nd</option>
-                            <option value="3rd">3rd</option>
-                            <option value="4th">4th</option>
-                        </select> -->
+                        ?>
                     </section>
                 </div>
             </div>
@@ -185,26 +165,6 @@ include("functions.php");
             console.log("Correct");
         }
         });
-
-    $(document).on("submit" , "#inputComment" ,function(e){
-        e.preventDefault();
-        var data = {
-            date:$('#date').val(),
-            comment: $('#comment').val(),
-            url:$('#url').val(),
-            account:$('#account').val(),
-            username:$('#username').val(),
-            password:$('#password').val(),
-            agent:$('#agent').val(),
-            backlink:$('#backlink').val(),
-            website_url:$('#website_url').val(),
-            thread_url:$('#thread_url').val(),
-            thread_id:$('#thread_id').val(),
-            media_id:$('#media_id').val()
-        };
-        ajax(data);
-    });
-
     function ajax(datas) {
         var request;
 
@@ -216,30 +176,10 @@ include("functions.php");
             data: {data:datas}
             });
         request.success(function (data) {
-            // console.log(datas);
-            // console.log("cracl");
-            // console.log(datas['date']);
-            // console.log("cracl");
-            //     document.getElementById("inputComment").reset();
             $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("contenteditable","false");
             $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("style","background-color:#fffffff");
             $("#confirmComment").hide();
             $("#addComment").show();
-            // $('#comment').attr("contenteditable","false");
-            // $('#url').attr("contenteditable","false");
-            // $('#account').attr("contenteditable","false");
-            // $('#username').attr("contenteditable","false");
-            // $('#password').attr("contenteditable","false");
-            // $('#agent').attr("contenteditable","false");
-            // $('#backlink').attr("contenteditable","false");
-            // $('#website_url').attr("contenteditable","false");
-            // $('#thread_url').attr("contenteditable","false");
-            // $('#thread_id').attr("contenteditable","false");
-            // $('#media_id').attr("contenteditable","false");
-
-                // $('#thisTable > tbody:last-child').append("<tr><td>"+datas['date']+"</td><td>"+datas['comment']+"</td><td>"+datas['url']+"</td><td>"+datas['account']+"</td><td>adamsNancy</td><td>BTs61313</td><td>"+datas['agent']+"</td><td>"+datas['backlink']+"</td></tr>");
-
-            console.log("cracl");
         });
         request.fail(function (error) {
             console.log(error);

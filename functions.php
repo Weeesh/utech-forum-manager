@@ -85,9 +85,14 @@
     }   
 
     function accountBreadCrumb($data){
+        global $conn;
 
         $query = "UPDATE breadcrumb SET acc_id='".$data['acc_id']."' WHERE id=1";
         mysqli_query($conn,$query);
+    }
+
+    function getCrumbs(){
+
     }
     // function getcsvheader(){
     //     $file = fopen("seo.csv","r");

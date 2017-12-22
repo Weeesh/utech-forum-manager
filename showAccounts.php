@@ -2,6 +2,8 @@
 
 require("dbcon.php");
 include("functions.php");
+
+
 ?>
 
 <!DOCTYPE html>
@@ -65,13 +67,48 @@ include("functions.php");
 <!-- container section end -->
 <?php include("javascriptScripts.php") ?>
 
+
 <script>
 
   //knob
   $(".knob").knob();
   $(document).ready(function() {
     $('.js-example-basic-single').select2();
-});
+  });
+  $(document).on("submit" , "#inputComment" ,function(e){
+      e.preventDefault();
+      var data = {
+          date:$('#date').val(),
+          comment: $('#comment').val(),
+          url:$('#url').val(),
+          account:$('#account').val(),
+          username:$('#username').val(),
+          password:$('#password').val(),
+          agent:$('#agent').val(),
+          backlink:$('#backlink').val(),
+          website_url:$('#website_url').val(),
+          thread_url:$('#thread_url').val(),
+          thread_id:$('#thread_id').val(),
+          media_id:$('#media_id').val()
+        };
+        ajax(data);
+    });
+  function ajax(data) {
+        var request;
+
+        console.log(data);
+
+        request=$.ajax({
+            type: "POST",
+            data: {data:data}
+            });
+        request.success(function (data) {
+            <?php header("Location: showGenre.php");?>
+        });
+        request.fail(function (error) {
+            console.log(error);
+        });
+    }
 
 </script>
 
