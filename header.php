@@ -3,7 +3,7 @@
         
 
         <!--logo start-->
-        <a href="" class="logo">Utech <span class="lite">Forum Manager</span></a>
+        <a href="index.php" class="logo">Utech <span class="lite">Forum Manager</span></a>
         <!--logo end-->
 
         <div class="nav search-row" id="top_menu">

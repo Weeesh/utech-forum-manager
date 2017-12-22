@@ -1,9 +1,9 @@
 <!--sidebar start-->
 <aside>
-      <div id="sidebar"  class="nav-collapse ">
+      <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu">
-              <li class="active">
+              <li>
                   <a class="" href="index.php">
                       <i class="icon_house_alt"></i>
                       <span>Dashboard</span>

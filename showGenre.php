@@ -42,6 +42,7 @@ include("functions.php");
                                 echo "<form action = 'showNiche.php' method = 'post'>";
                                 echo "<input type ='text' value = ".$vals['id']." name ='genre_id' style='display: none'>";
                                 echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
                                 echo "<input type ='submit' value = ".$vals['name']." name = 'genre' class='btn btn-link' style='color:grey;text-decoration:none;'>";
                                 echo "</form>";
                             }

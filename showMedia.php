@@ -43,8 +43,11 @@ include("functions.php");
                                 echo "<form action = 'showThreads.php' method = 'post'>";
                                 echo "<input type ='text' value = ".$vals['id']." name = 'media_id' style='display:none;'>";
                                 echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
-                                echo "<input type ='text' value = ".$_POST['niche']." name = 'niche' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
                                 echo "<input type ='text' value = ".$_POST['genre']." name = 'genre' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['genre_id']." name = 'genre_id' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['niche']." name = 'niche' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['niche_id']." name = 'niche_id' style='display: none'>";
                                 echo "<input type ='submit' value = ".$vals['name']." name = 'media' class='btn btn-link' style='color:grey;text-decoration:none;'><span>".$vals['thread_no']." threads </span><span>".$vals['comment_no']." comments </span>";
                                 echo "</form>";
                             }

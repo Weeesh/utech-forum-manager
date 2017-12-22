@@ -7,16 +7,14 @@
 <script src="DataTables/dataTables.min.js"></script>
 <!-- bootstrap -->
 <script src="NiceAdmin/js/bootstrap.min.js"></script>
-<!-- nice scroll -->
-<script src="NiceAdmin/js/jquery.scrollTo.min.js"></script>
-<script src="NiceAdmin/js/jquery.nicescroll.js" type="text/javascript"></script>
 <!-- charts scripts -->
 <script src="NiceAdmin/assets/jquery-knob/js/jquery.knob.js"></script>
 <script src="NiceAdmin/js/jquery.sparkline.js" type="text/javascript"></script>
 <script src="NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
 <script src="NiceAdmin/js/owl.carousel.js" ></script>
 <!-- jQuery full calendar -->
-<<script src="NiceAdmin/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<<script src="NiceAdmin/js/fullcalendar.min.js"></script> 
+<!-- Full Google Calendar - Calendar -->
 <script src="NiceAdmin/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
 <!--script for this page only-->
 <script src="NiceAdmin/js/calendar-custom.js"></script>
@@ -40,3 +38,5 @@
 <script src="NiceAdmin/js/sparklines.js"></script>
 <script src="NiceAdmin/js/charts.js"></script>
 <script src="NiceAdmin/js/jquery.slimscroll.min.js"></script>
+<!-- This here-->
+<!-- <script src="NiceAdmin\js\jquery.nicescroll.js" ></script> -->

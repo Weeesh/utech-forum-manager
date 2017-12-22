@@ -43,7 +43,9 @@ include("functions.php");
                                 echo "<form action = 'showMedia.php' method = 'post'>";
                                 echo "<input type ='text' value = ".$vals['id']." name = 'niche_id' style='display:none;'>";
                                 echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
                                 echo "<input type ='text' value = ".$_POST['genre']." name = 'genre' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['genre_id']." name = 'genre_id' style='display: none'>";
                                 echo "<input type ='submit' value = ".$vals['name']." name = 'niche' class='btn btn-link' style='color:grey;text-decoration:none;'>";
                                 echo "</form>";
                             }

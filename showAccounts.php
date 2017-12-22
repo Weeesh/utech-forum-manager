@@ -43,7 +43,9 @@ include("functions.php");
                                 echo "<form action = 'showGenre.php' method = 'post'>";
                                 echo "<input type ='text' value = ".$vals['id']." name ='acc_id' style='display:none'>";
                                 echo "<br>";
-                                echo "<input type ='submit' value = ".$vals['website_url']." name='account' class='btn btn-link' style='color:grey;text-decoration:none;'>";
+                                echo "<input type ='text' value = ".$vals['website_url']." name ='acc_url' style='display:none'>";
+                                echo "<br>";
+                                echo "<input type ='submit' value = ".$vals['website']." name='account' class='btn btn-link' style='color:grey;text-decoration:none;'>";
                                 echo "<br>";
                                 echo "</form>";
                             }

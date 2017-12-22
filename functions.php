@@ -1,20 +1,6 @@
 <?php
     require("dbcon.php");
 
-    function addComment(){
-        $data=$_POST["data"];
-        $query="SELECT
-                FROM
-                WHERE";
-    }
-
-    function sessionChecker(){
-        session_start();
-        if(!isset($_SESSION)){
-            header("Location: login.php");
-        }
-    }
-
     function allAccounts(){
         global $conn;
 
@@ -71,8 +57,12 @@
     }
 
     function allComments($url){
-        global $conn;
-        
+        $conn = mysqli_connect("localhost","root","","forums");
+        //check connection
+        if (!$conn) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
         $query = "SELECT * 
                   FROM `comments` 
                   WHERE `thread_id` = '$url'";
@@ -82,6 +72,23 @@
 
     }
 
+
+    function getAccount($url){
+        global $conn;
+
+        $query = "SELECT *
+                  FROM `accounts` 
+                  WHERE `id`= $url";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
+    }   
+
+    function accountBreadCrumb($data){
+
+        $query = "UPDATE breadcrumb SET acc_id='".$data['acc_id']."' WHERE id=1";
+        mysqli_query($conn,$query);
+    }
     // function getcsvheader(){
     //     $file = fopen("seo.csv","r");
     //     $ret =fgetcsv($file);
