@@ -4,6 +4,9 @@ require("dbcon.php");
 include("functions.php");
 
 
+if(isset($_POST['data'])){
+  accountBreadCrumb($_POST['data']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +45,12 @@ include("functions.php");
 
                             while($vals = mysqli_fetch_array($result,MYSQLI_ASSOC)){
                                 
-                                echo "<form action = 'showGenre.php' method = 'post'>";
-                                echo "<input type ='text' value = ".$vals['id']." name ='acc_id' style='display:none'>";
+                                echo "<form>";
+                                echo "<input type ='text' value = ".$vals['id']." id ='acc_id' style='display:none'>";
                                 echo "<br>";
-                                echo "<input type ='text' value = ".$vals['website_url']." name ='acc_url' style='display:none'>";
+                                echo "<input type ='text' value = ".$vals['website_url']." id ='acc_url' style='display:none'>";
                                 echo "<br>";
-                                echo "<input type ='submit' value = ".$vals['website']." name='account' class='btn btn-link' style='color:grey;text-decoration:none;'>";
+                                echo "<input type ='submit' value = ".$vals['website']." id='account' class='btn btn-link' style='color:grey;text-decoration:none;'>";
                                 echo "<br>";
                                 echo "</form>";
                             }
@@ -75,38 +78,26 @@ include("functions.php");
   $(document).ready(function() {
     $('.js-example-basic-single').select2();
   });
-  $(document).on("submit" , "#inputComment" ,function(e){
+  $(document).on("submit" , "form" ,function(e){
       e.preventDefault();
       var data = {
-          date:$('#date').val(),
-          comment: $('#comment').val(),
-          url:$('#url').val(),
-          account:$('#account').val(),
-          username:$('#username').val(),
-          password:$('#password').val(),
-          agent:$('#agent').val(),
-          backlink:$('#backlink').val(),
-          website_url:$('#website_url').val(),
-          thread_url:$('#thread_url').val(),
-          thread_id:$('#thread_id').val(),
-          media_id:$('#media_id').val()
+          acc_id:$(this).children("#acc_id").val()
         };
         ajax(data);
     });
   function ajax(data) {
         var request;
 
-        console.log(data);
-
         request=$.ajax({
-            type: "POST",
+            type: "POST",      
             data: {data:data}
             });
-        request.success(function (data) {
-            <?php header("Location: showGenre.php");?>
+        request.done(function (response) {
+          console.log(response);
+          location.assign("showGenre.php");
         });
-        request.fail(function (error) {
-            console.log(error);
+        request.fail(function (response) {
+            console.log(response);
         });
     }
 

@@ -11,52 +11,52 @@
         return $result;
     }
 
-    function allGenres($url){
+    function allGenres($data){
         global $conn;
         
         $query = "SELECT *
                   FROM `genre` 
-                  WHERE `acc_id` = '$url'";
+                  WHERE `acc_id` = '$data'";
         $result = mysqli_query($conn,$query);
 
         return $result;
     }
 
-    function allNiche($url){
+    function allNiche($data){
         global $conn;
         
         $query = "SELECT *
                   FROM `niche` 
-                  WHERE `genre_id` = '$url'";
+                  WHERE `genre_id` = '$data'";
         $result = mysqli_query($conn,$query);
 
         return $result;
     }
 
-    function allMedia($url){
+    function allMedia($data){
         global $conn;
         
         $query = "SELECT *
                   FROM `media` 
-                  WHERE `niche_id` = '$url'";
+                  WHERE `niche_id` = '$data'";
         $result = mysqli_query($conn,$query);
 
         return $result;
     }
 
-    function allThread($url){
+    function allThread($data){
         global $conn;
 
         $query = "SELECT *
                   FROM `thread` 
-                  WHERE `media_id` = '$url'";
+                  WHERE `media_id` = '$data'";
         $result = mysqli_query($conn,$query);
 
         return $result;
 
     }
 
-    function allComments($url){
+    function allComments($data){
         $conn = mysqli_connect("localhost","root","","forums");
         //check connection
         if (!$conn) {
@@ -65,7 +65,7 @@
         }
         $query = "SELECT * 
                   FROM `comments` 
-                  WHERE `thread_id` = '$url'";
+                  WHERE `thread_id` = '$data'";
         $result = mysqli_query($conn,$query);
 
         return $result;
@@ -73,12 +73,12 @@
     }
 
 
-    function getAccount($url){
+    function getAccount($data){
         global $conn;
 
         $query = "SELECT *
                   FROM `accounts` 
-                  WHERE `id`= $url";
+                  WHERE `id`= $data";
         $result = mysqli_query($conn,$query);
 
         return $result;
@@ -87,12 +87,23 @@
     function accountBreadCrumb($data){
         global $conn;
 
-        $query = "UPDATE breadcrumb SET acc_id='".$data['acc_id']."' WHERE id=1";
-        mysqli_query($conn,$query);
+        $query = "UPDATE `breadcrumb`
+                  SET `acc_id`='".$data['acc_id']."' 
+                  WHERE `id`=1";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
     }
 
     function getCrumbs(){
+        global $conn;
 
+        $query = "SELECT *
+                  FROM `breadcrumb` 
+                  WHERE `id`= 1";
+        $result = mysqli_query($conn,$query);
+
+        return $result;
     }
     // function getcsvheader(){
     //     $file = fopen("seo.csv","r");
@@ -103,12 +114,12 @@
     //     return $ret;
     // }
 
-    // function webGenreSearch($url){
+    // function webGenreSearch($data){
     //     global $conn;
         
     //     $query = "SELECT `URL` 
     //               FROM `website` 
-    //               WHERE `genre` = '$url'";
+    //               WHERE `genre` = '$data'";
     //     $result = mysqli_query($conn,$query);
 
     //     return $result;
@@ -124,12 +135,12 @@
     //     return $result;
     // }
 
-    // function webUrlCommentSearch($url){
+    // function webUrlCommentSearch($data){
     //     global $conn;
 
     //     $query = "SELECT `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account` 
     //               FROM `comments` 
-    //               WHERE `website_url` = '$url'";
+    //               WHERE `website_url` = '$data'";
     //     $result = mysqli_query($conn,$query);
 
     //     return $result;
@@ -146,24 +157,24 @@
 
     // }
 
-    // function threadUrlCommentSearch($url){
+    // function threadUrlCommentSearch($data){
     //     global $conn;
         
     //     $query = "SELECT DISTINCT `comment_url`, `date_posted`, `comment`, `account`, `agent`, `backlink` 
     //               FROM `comments` 
-    //               WHERE `thread_url` = '$url'";
+    //               WHERE `thread_url` = '$data'";
     //     $result = mysqli_query($conn,$query);
 
     //     return $result;
 
     // }
 
-    // function allWebAccounts($url){
+    // function allWebAccounts($data){
     //     global $conn;
 
     //     $query = "SELECT DISTINCT a.username, a.password 
     //               FROM accounts a, website w, thread t
-    //               WHERE w.URL = a.website_url  AND w.URL = '$url'";
+    //               WHERE w.URL = a.website_url  AND w.URL = '$data'";
     //     $result = mysqli_query($conn,$query);
         
     //     return $result;
@@ -184,12 +195,12 @@
 
 
 
-    // function accountCommentSearch($url){
+    // function accountCommentSearch($data){
     //     global $conn;
         
     //     $query = "SELECT `thread_url`, `website_url`, `comment_url`, `date_posted`, `comment`, `account`, 
     //               FROM `comments` 
-    //               WHERE `account` = '$url'";
+    //               WHERE `account` = '$data'";
     //     $result = mysqli_query($conn,$query);
 
     //     return $result;
