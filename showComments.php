@@ -133,7 +133,7 @@ include("functions.php");
   //knob
 $(document).ready(function() {
     $(".knob").knob();
-    $("#confirmComment, #cancelComment, #getDate, .confirmbtn, .cancelbtn, confirmColumn").hide();
+    $("#confirmComment, #cancelComment, #getDate, .confirmbtn, .cancelbtn, confirmColumn, #addColumn, #confirmColumn").hide();
     // $("#dude").change(function(){
     //     console.log($("#dude").val());
     // });
@@ -144,10 +144,10 @@ $(document).ready(function() {
 
     $("#addComment").click(function(){
         $('#thisTable > tbody:last-child').append("<tr ><td id='date_posted' style='background-color:#cccccc' contenteditable='true'></td><td id='comment' style='background-color:#cccccc' contenteditable='true'></td><td id='comment_url' style='background-color:#cccccc' contenteditable='true'></td><td id='account' style='background-color:#cccccc' contenteditable='true'></td><td id='username' style='background-color:#cccccc' contenteditable='true'></td><td id='password' style='background-color:#cccccc' contenteditable='true'></td><td id='agent' style='background-color:#cccccc' contenteditable='true'></td><td id='backlink' style='background-color:#cccccc' contenteditable='true'></td><td><button disabled style='display: none;' class='btn btn-primary confirmbtn'>Confirm</button><button disabled class='btn btn-success editbtn'>Edit</button><button disabled class='btn btn-danger deletebtn'>Delete</button><button disabled style='display: none;' class='btn btn-danger cancelbtn'>Cancel Edit</button></td></tr>");
+        $('#thisTable > tbody:last-child').find("tr:last").find("#date_posted").focus();
         $("#confirmComment").show();
         $("#cancelComment").show();
         $("#addComment").hide();
-        console.log($('#thisTable > tbody:last-child').text());
     });
     $("#getDate").click(function(){
         <?php
@@ -169,75 +169,35 @@ $(document).ready(function() {
     });
     $(".confirmbtn").click(function(){
         console.log($(this).parent().parent().attr("id"));
-        $(this).parent().parent().find("#date_posted").removeAttr("contenteditable");
-        $(this).parent().parent().find("#comment").removeAttr("contenteditable");
-        $(this).parent().parent().find("#comment_url").removeAttr("contenteditable");
-        $(this).parent().parent().find("#account").removeAttr("contenteditable");
-        $(this).parent().parent().find("#username").removeAttr("contenteditable");
-        $(this).parent().parent().find("#password").removeAttr("contenteditable");
-        $(this).parent().parent().find("#agent").removeAttr("contenteditable");
-        $(this).parent().parent().find("#backlink").removeAttr("contenteditable");//
-        $(this).parent().parent().find("#date_posted").removeAttr("style");
-        $(this).parent().parent().find("#comment").removeAttr("style");
-        $(this).parent().parent().find("#comment_url").removeAttr("style");
-        $(this).parent().parent().find("#account").removeAttr("style");
-        $(this).parent().parent().find("#username").removeAttr("style");
-        $(this).parent().parent().find("#password").removeAttr("style");
-        $(this).parent().parent().find("#agent").removeAttr("style");
-        $(this).parent().parent().find("#backlink").removeAttr("style");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("contenteditable");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("style");
         $(this).parent().parent().find(".cancelbtn").hide();
         $(this).parent().parent().find(".confirmbtn").hide();
         $(this).parent().parent().find(".deletebtn").show();
   
         var data = {
-      id:$(this).parent().parent().attr("id"),
-      date:$(this).parent().parent().find('#date_posted').text(),
-      comment: $(this).parent().parent().find('#comment').text(),
-      url:$(this).parent().parent().find('#comment_url').text(),
-      account:$(this).parent().parent().find('#account').text(),
-      agent:$(this).parent().parent().find('#agent').text(),
-      backlink:$(this).parent().parent().find('#backlink').text()
+          id:$(this).parent().parent().attr("id"),
+          date:$(this).parent().parent().find('#date_posted').text(),
+          comment: $(this).parent().parent().find('#comment').text(),
+          url:$(this).parent().parent().find('#comment_url').text(),
+          username:$(this).parent().parent().find('#username').text(),
+          password:$(this).parent().parent().find('#password').text(),
+          account:$(this).parent().parent().find('#account').text(),
+          agent:$(this).parent().parent().find('#agent').text(),
+          backlink:$(this).parent().parent().find('#backlink').text()
         };
-        console.log(data);
+        updateAjax(data);
     });
     $(".editbtn").click(function(){
-        $(this).parent().parent().find("#date_posted").attr("contenteditable","true");
-        $(this).parent().parent().find("#comment").attr("contenteditable","true");
-        $(this).parent().parent().find("#comment_url").attr("contenteditable","true");
-        $(this).parent().parent().find("#account").attr("contenteditable","true");
-        $(this).parent().parent().find("#username").attr("contenteditable","true");
-        $(this).parent().parent().find("#password").attr("contenteditable","true");
-        $(this).parent().parent().find("#agent").attr("contenteditable","true");
-        $(this).parent().parent().find("#backlink").attr("contenteditable","true");//
-        $(this).parent().parent().find("#date_posted").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#comment").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#comment_url").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#account").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#username").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#password").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#agent").attr("style","background-color:#cccccc");
-        $(this).parent().parent().find("#backlink").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").attr("contenteditable","true");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").attr("style","background-color:#cccccc");
         $(this).parent().parent().find(".cancelbtn").show();
         $(this).parent().parent().find(".confirmbtn").show();
         $(this).parent().parent().find(".deletebtn").hide();
     });
     $(".cancelbtn").click(function(){
-        $(this).parent().parent().find("#date_posted").removeAttr("contenteditable");
-        $(this).parent().parent().find("#comment").removeAttr("contenteditable");
-        $(this).parent().parent().find("#comment_url").removeAttr("contenteditable");
-        $(this).parent().parent().find("#account").removeAttr("contenteditable");
-        $(this).parent().parent().find("#username").removeAttr("contenteditable");
-        $(this).parent().parent().find("#password").removeAttr("contenteditable");
-        $(this).parent().parent().find("#agent").removeAttr("contenteditable");
-        $(this).parent().parent().find("#backlink").removeAttr("contenteditable");//
-        $(this).parent().parent().find("#date_posted").removeAttr("style");
-        $(this).parent().parent().find("#comment").removeAttr("style");
-        $(this).parent().parent().find("#comment_url").removeAttr("style");
-        $(this).parent().parent().find("#account").removeAttr("style");
-        $(this).parent().parent().find("#username").removeAttr("style");
-        $(this).parent().parent().find("#password").removeAttr("style");
-        $(this).parent().parent().find("#agent").removeAttr("style");
-        $(this).parent().parent().find("#backlink").removeAttr("style");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("contenteditable");
+        $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("style");
         $(this).parent().parent().find(".cancelbtn").hide();
         $(this).parent().parent().find(".confirmbtn").hide();
         $(this).parent().parent().find(".deletebtn").show();
@@ -248,23 +208,6 @@ $(document).ready(function() {
         };
         deleteAjax(data);
     });
-    function deleteAjax(data) {
-        
-        console.log(data);
-  
-        request=$.ajax({
-      type: "POST",
-      url: "deleteRow.php",
-      data: {data:data}
-      });
-        request.success(function (response) {
-      console.log("Success:"+data['id']);
-      $("#"+data['id']).hide();
-        });
-        request.fail(function (error) {
-      console.log(error);
-        });
-    }
     $("#confirmComment").click(function(e){
         e.preventDefault();
         var data = {
@@ -283,7 +226,40 @@ $(document).ready(function() {
         };
         ajax(data);
     });
+    function updateAjax(data) {
+        
+        console.log(data);
+  
+        request=$.ajax({
+          type: "POST",
+          url: "updateComment.php",
+          data: {data:data}
+      });
+        request.success(function (response) {
+          console.log("Success:"+data['id']);
 
+        });
+        request.fail(function (error) {
+            console.log(error);
+        });
+    }
+    function deleteAjax(data) {
+        
+        console.log(data);
+  
+        request=$.ajax({
+      type: "POST",
+      url: "deleteRow.php",
+      data: {data:data}
+      });
+        request.success(function (response) {
+      console.log("Success:"+data['id']);
+      $("#"+data['id']).hide();
+        });
+        request.fail(function (error) {
+      console.log(error);
+        });
+    }
     function ajax(data, url) {
   
         console.log(data);
