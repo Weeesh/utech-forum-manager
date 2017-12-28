@@ -4,7 +4,8 @@
 	
         $data=$_POST["data"];
         $query="INSERT INTO comments(thread_url, website_url, Comment_URL, Date_Posted, Comment, Account_Name, Username, Password, Agent, Backlink, thread_id) VALUES ('".$data['thread_url']."','".$data['website_url']."','".$data['url']."','".$data['date']."','".$data['comment']."','".$data['account']."','".$data['username']."','".$data['password']."','".$data['agent']."','".$data['backlink']."','".$data['thread_id']."')";
-        $result = mysqli_query($conn,$query);
+        $result = $conn->query($query);
+        $id=$conn->insert_id;
 
         //Updating count number of thread
         $query="SELECT DISTINCT COUNT(c.thread_id) AS numbers FROM comments c WHERE c.thread_id = ".$data['thread_id']." GROUP BY c.thread_id;";
@@ -34,5 +35,5 @@
         $query="UPDATE media SET comment_no = '".$val['dupa']."', thread_no = '".$val['dupo']."' WHERE media.id='".$data['media_id']."';";
 		$result = mysqli_query($conn,$query);
 
-		return $data;
+		print $id;
 ?>

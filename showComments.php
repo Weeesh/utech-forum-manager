@@ -38,14 +38,18 @@ include("functions.php");
                 </div>
             </div>
             <div class="row">
+              <div class="col-lg-12">
+                <div class="text-right">
+                    <button id="addComment" class="btn btn-primary">Add Comment</button>
+                    <button id="addColumn" class="btn btn-primary">Add Column</button>
+                    <button id="confirmColumn" class="btn btn-primary">Confirm Column</button>
+                    <button id="getDate" class="btn btn-primary">This month</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <div class="text-right">
-                            <button id="addComment">Add Comment</button>
-                            <button id="addColumn">Add Column</button>
-                            <button id="confirmColumn">Confirm Column</button>
-                            <button id="getDate">This month</button>
-                        </div>
                         <table id="thisTable" class = "table table-bordered table-responsive">
                             <thead>
                                 <th>Date Posted</th>
@@ -83,8 +87,8 @@ include("functions.php");
                             </tbody>
                         </table>
                         <div class="text-right">
-                            <button id="confirmComment">Confirm Comment</button>
-                            <button id="cancelComment">Remove Comment</button>
+                            <button id="confirmComment" class="btn btn-success">Confirm Comment</button>
+                            <button id="cancelComment" class="btn btn-danger">Remove Comment</button>
                         </div>
                         <?php 
                             echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
@@ -143,7 +147,7 @@ $(document).ready(function() {
     });
 
     $("#addComment").click(function(){
-        $('#thisTable > tbody:last-child').append("<tr ><td id='date_posted' style='background-color:#cccccc' contenteditable='true'></td><td id='comment' style='background-color:#cccccc' contenteditable='true'></td><td id='comment_url' style='background-color:#cccccc' contenteditable='true'></td><td id='account' style='background-color:#cccccc' contenteditable='true'></td><td id='username' style='background-color:#cccccc' contenteditable='true'></td><td id='password' style='background-color:#cccccc' contenteditable='true'></td><td id='agent' style='background-color:#cccccc' contenteditable='true'></td><td id='backlink' style='background-color:#cccccc' contenteditable='true'></td><td><button disabled style='display: none;' class='btn btn-primary confirmbtn'>Confirm</button><button disabled class='btn btn-success editbtn'>Edit</button><button disabled class='btn btn-danger deletebtn'>Delete</button><button disabled style='display: none;' class='btn btn-danger cancelbtn'>Cancel Edit</button></td></tr>");
+        $('#thisTable > tbody:last-child').append("<tr ><td id='date_posted' style='background-color:#cccccc' contenteditable='true'></td><td id='comment' style='background-color:#cccccc' contenteditable='true'></td><td id='comment_url' style='background-color:#cccccc' contenteditable='true'></td><td id='account' style='background-color:#cccccc' contenteditable='true'></td><td id='username' style='background-color:#cccccc' contenteditable='true'></td><td id='password' style='background-color:#cccccc' contenteditable='true'></td><td id='agent' style='background-color:#cccccc' contenteditable='true'></td><td id='backlink' style='background-color:#cccccc' contenteditable='true'><select id='myselect'><option value='No'>No<option value='Yes'>Yes</select></td><td><button disabled style='display: none;' class='btn btn-primary confirmbtn'>Confirm</button><button disabled class='btn btn-success editbtn'>Edit</button><button disabled class='btn btn-danger deletebtn'>Delete</button><button disabled style='display: none;' class='btn btn-danger cancelbtn'>Cancel Edit</button></td></tr>");
         $('#thisTable > tbody:last-child').find("tr:last").find("#date_posted").focus();
         $("#confirmComment").show();
         $("#cancelComment").show();
@@ -167,7 +171,7 @@ $(document).ready(function() {
         $("#addComment").show();
         $("#addComment").focus();
     });
-    $(".confirmbtn").click(function(){
+    $('#thisTable').on('click', '.confirmbtn', function() {
         console.log($(this).parent().parent().attr("id"));
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("contenteditable");
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("style");
@@ -184,45 +188,53 @@ $(document).ready(function() {
           password:$(this).parent().parent().find('#password').text(),
           account:$(this).parent().parent().find('#account').text(),
           agent:$(this).parent().parent().find('#agent').text(),
-          backlink:$(this).parent().parent().find('#backlink').text()
+          backlink:$(this).parent().parent().find('#backlink').text(),
+          website_url:$('#website_url').val(),
+          thread_url:$('#thread_url').val(),
+          thread_id:$('#thread_id').val(),
+          media_id:$('#media_id').val()
         };
         updateAjax(data);
     });
-    $(".editbtn").click(function(){
+    $('#thisTable').on('click', '.editbtn', function() {
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").attr("contenteditable","true");
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").attr("style","background-color:#cccccc");
         $(this).parent().parent().find(".cancelbtn").show();
         $(this).parent().parent().find(".confirmbtn").show();
         $(this).parent().parent().find(".deletebtn").hide();
     });
-    $(".cancelbtn").click(function(){
+    $('#thisTable').on('click', '.cancelbtn', function() {
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("contenteditable");
         $(this).parent().parent().find("#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink").removeAttr("style");
         $(this).parent().parent().find(".cancelbtn").hide();
         $(this).parent().parent().find(".confirmbtn").hide();
         $(this).parent().parent().find(".deletebtn").show();
     });
-    $(".deletebtn").click(function(){
+    $('#thisTable').on('click', '.deletebtn', function() {
         var data = {
-      id:$(this).parent().parent("tr").attr("id")
+            id:$(this).parent().parent("tr").attr("id"),
+          website_url:$('#website_url').val(),
+          thread_url:$('#thread_url').val(),
+          thread_id:$('#thread_id').val(),
+          media_id:$('#media_id').val()
         };
         deleteAjax(data);
     });
     $("#confirmComment").click(function(e){
         e.preventDefault();
         var data = {
-      date:$('#date_posted').text(),
-      comment: $('#comment').text(),
-      url:$('#comment_url').text(),
-      account:$('#account').text(),
-      username:$('#username').text(),
-      password:$('#password').text(),
-      agent:$('#agent').text(),
-      backlink:$('#backlink').text(),
-      website_url:$('#website_url').val(),
-      thread_url:$('#thread_url').val(),
-      thread_id:$('#thread_id').val(),
-      media_id:$('#media_id').val()
+          date:$('#thisTable > tbody:last-child').find("tr:last").find('#date_posted').text(),
+          comment: $('#thisTable > tbody:last-child').find("tr:last").find('#comment').text(),
+          url:$('#thisTable > tbody:last-child').find("tr:last").find('#comment_url').text(),
+          account:$('#thisTable > tbody:last-child').find("tr:last").find('#account').text(),
+          username:$('#thisTable > tbody:last-child').find("tr:last").find('#username').text(),
+          password:$('#thisTable > tbody:last-child').find("tr:last").find('#password').text(),
+          agent:$('#thisTable > tbody:last-child').find("tr:last").find('#agent').text(),
+          backlink:$('#thisTable > tbody:last-child').find("tr:last").find('#backlink').find('select').val(),
+          website_url:$('#website_url').val(),
+          thread_url:$('#thread_url').val(),
+          thread_id:$('#thread_id').val(),
+          media_id:$('#media_id').val()
         };
         ajax(data);
     });
@@ -269,12 +281,17 @@ $(document).ready(function() {
       url: "insert.php",
       data: {data:data}
       });
-        request.success(function (data) {
-      $('#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("contenteditable","false");
-      $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("style","background-color:#fffffff");
-      $(".deletebtn, .editbtn, .confirmbtn, .cancelbtn").removeAttr("disabled");
-      $("#confirmComment").hide();
-      $("#addComment").show();
+        request.success(function (response) {
+          $('#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("contenteditable","false");
+          $('#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("style","background-color:#fffffff");
+          $(".deletebtn, .editbtn, .confirmbtn, .cancelbtn").removeAttr("disabled");
+          var val=$('#thisTable > tbody:last-child').find("tr:last").find("#backlink").find('select').val();
+          $('#thisTable > tbody:last-child').find("tr:last").find("#backlink").empty();
+          console.log("This "+ response);
+          $('#thisTable > tbody:last-child').find("tr:last").attr("id",response)
+          $('#thisTable > tbody:last-child').find("tr:last").find("#backlink").text(val);
+          $("#confirmComment").hide();
+          $("#addComment").show();
         });
         request.fail(function (error) {
       console.log(error);
