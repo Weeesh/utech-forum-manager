@@ -3,7 +3,7 @@
 
 	
         $data=$_POST["data"];
-        $query="INSERT INTO comments(thread_url, website_url, comment_url, date_posted, comment, account, Agent, Backlink,thread_id) VALUES ('".$data['thread_url']."','".$data['website_url']."','".$data['url']."','".$data['date']."','".$data['comment']."','".$data['account']."','".$data['agent']."','".$data['backlink']."','".$data['thread_id']."')";
+        $query="INSERT INTO comments(thread_url, website_url, Comment_URL, Date_Posted, Comment, Account_Name, Username, Password, Agent, Backlink, thread_id) VALUES ('".$data['thread_url']."','".$data['website_url']."','".$data['url']."','".$data['date']."','".$data['comment']."','".$data['account']."','".$data['username']."','".$data['password']."','".$data['agent']."','".$data['backlink']."','".$data['thread_id']."')";
         $result = mysqli_query($conn,$query);
 
         //Updating count number of thread

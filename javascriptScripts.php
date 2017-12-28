@@ -4,7 +4,7 @@
 <script src="NiceAdmin/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="NiceAdmin/js/jquery-ui-1.9.2.custom.min.js"></script>
 
-<script src="DataTables/dataTables.min.js"></script>
+<script type="text/javascript" src="DataTables-1.10.16/js/jquery.dataTables.js"></script>
 <!-- bootstrap -->
 <script src="NiceAdmin/js/bootstrap.min.js"></script>
 <!-- charts scripts -->

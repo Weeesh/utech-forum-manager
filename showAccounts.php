@@ -69,9 +69,6 @@ include("functions.php");
 
   //knob
   $(".knob").knob();
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
 
 </script>
 

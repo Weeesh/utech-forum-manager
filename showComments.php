@@ -40,6 +40,12 @@ include("functions.php");
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
+                        <div class="text-right">
+                            <button id="addComment">Add Comment</button>
+                            <button id="addColumn">Add Column</button>
+                            <button id="confirmColumn">Confirm Column</button>
+                            <button id="getDate">This month</button>
+                        </div>
                         <table id="thisTable" class = "table table-bordered table-responsive">
                             <thead>
                                 <th>Date Posted</th>
@@ -50,6 +56,7 @@ include("functions.php");
                                 <th>Password</th>
                                 <th>Agent</th>
                                 <th>Backlink</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 <?php
@@ -60,14 +67,15 @@ include("functions.php");
                                         // $second_date = strtotime('-10 day', strtotime(date("Y-m-d")));
                                         // if($given > $second_date){
                                             echo "<tr id='".$vals['id']."'>";
-                                                echo "<td>".$vals['date_posted']."</td>";  // Date Posted
-                                                echo "<td>".$vals['comment']."</td>";  // Comment
-                                                echo "<td>".$vals['comment_url']."</td>";  //Comment URL
-                                                echo "<td>".$vals['account']."</td>";
-                                                echo "<td>adamsNancy</td>";  //Username
-                                                echo "<td>BTs61313@</td>"; //password
-                                                echo "<td>".$vals['Agent']."</td>";  //Agent
-                                                echo "<td>".$vals['Backlink']."</td>";  //Backlink
+                                                echo "<td id='date_posted'>".$vals['Date_Posted']."</td>";  // Date Posted
+                                                echo "<td id='comment'>".$vals['Comment']."</td>";  // Comment
+                                                echo "<td id='comment_url'>".$vals['Comment_URL']."</td>";  //Comment URL
+                                                echo "<td id='account'>".$vals['Account_Name']."</td>";
+                                                echo "<td id='username'>".$vals['Username']."</td>";  //Username
+                                                echo "<td id='password'>".$vals['Password']."</td>"; //password
+                                                echo "<td id='agent'>".$vals['Agent']."</td>";  //Agent
+                                                echo "<td id='backlink'>".$vals['Backlink']."</td>";  //Backlink
+                                                echo "<td><button class='btn btn-primary confirmbtn'>Confirm</button><button class='btn btn-success editbtn'>Edit</button><button class='btn btn-danger deletebtn'>Delete</button><button class='btn btn-danger cancelbtn'>Cancel Edit</button></td>";  //Action
                                             echo "</tr>";
                                         // }
                                     }
@@ -76,22 +84,8 @@ include("functions.php");
                         </table>
                         <div class="text-right">
                             <button id="confirmComment">Confirm Comment</button>
-                            <button id="addComment">Add Comment</button>
-                            <button id="removeComment">Remove Comment</button>
-                            <button id="getDate">This month</button>
+                            <button id="cancelComment">Remove Comment</button>
                         </div>
-                        <!-- <form id="inputComment" >
-                            Date:       <input type="date" id="date" name="date"><br>
-                            Comment:    <input type="text" id="comment" name="comment"><br>
-                            Comment URL:<input type="text" id="url" name="url"><br>
-                            Account:    <input type="text" id="account" name="account"><br>
-                            Username:   <input type="text" id="username" name="username"><br>
-                            Password:   <input type="text" id="password" name="password"><br>
-                            Agent:      <input type="text" id="agent" name="agent"><br>
-                            Backlink:   <select name="backlink" id="backlink">
-                                            <option value="No">No</option>
-                                            <option value="Yes">Yes</option>
-                                        </select><br> -->
                         <?php 
                             echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
                             echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
@@ -137,115 +131,180 @@ include("functions.php");
 <script>
 
   //knob
-  $(".knob").knob();
-  $("#confirmComment").hide();
-    $("#dude").change(function(){
-        console.log($("#dude").val());
+$(document).ready(function() {
+    $(".knob").knob();
+    $("#confirmComment, #cancelComment, #getDate, .confirmbtn, .cancelbtn, confirmColumn").hide();
+    // $("#dude").change(function(){
+    //     console.log($("#dude").val());
+    // });
+
+    $("#addColumn").click(function(){
+        $("#thisTable tr").append("<td></td>");
     });
+
     $("#addComment").click(function(){
-        $('#thisTable > tbody:last-child').append("<tr ><td id='date' style='background-color:#cccccc' contenteditable='true'></td><td id='comment' style='background-color:#cccccc' contenteditable='true'></td><td id='url' style='background-color:#cccccc' contenteditable='true'></td><td id='account' style='background-color:#cccccc' contenteditable='true'></td><td id='username' style='background-color:#cccccc' contenteditable='true'></td><td id='password' style='background-color:#cccccc' contenteditable='true'></td><td id='agent' style='background-color:#cccccc' contenteditable='true'></td><td id='backlink' style='background-color:#cccccc' contenteditable='true'></td>></tr>");
+        $('#thisTable > tbody:last-child').append("<tr ><td id='date_posted' style='background-color:#cccccc' contenteditable='true'></td><td id='comment' style='background-color:#cccccc' contenteditable='true'></td><td id='comment_url' style='background-color:#cccccc' contenteditable='true'></td><td id='account' style='background-color:#cccccc' contenteditable='true'></td><td id='username' style='background-color:#cccccc' contenteditable='true'></td><td id='password' style='background-color:#cccccc' contenteditable='true'></td><td id='agent' style='background-color:#cccccc' contenteditable='true'></td><td id='backlink' style='background-color:#cccccc' contenteditable='true'></td><td><button disabled style='display: none;' class='btn btn-primary confirmbtn'>Confirm</button><button disabled class='btn btn-success editbtn'>Edit</button><button disabled class='btn btn-danger deletebtn'>Delete</button><button disabled style='display: none;' class='btn btn-danger cancelbtn'>Cancel Edit</button></td></tr>");
         $("#confirmComment").show();
+        $("#cancelComment").show();
         $("#addComment").hide();
+        console.log($('#thisTable > tbody:last-child').text());
     });
     $("#getDate").click(function(){
         <?php
-            $first_date = strtotime(date("Y-m-d"));
-            $second_date = strtotime('-10 day', $first_date);
-
-            echo "console.log('First Date ".date('Y-m-d', $first_date)."');console.log('Second Date ".date('Y-m-d', $second_date)."');";
+      $first_date = strtotime(date("Y-m-d"));
+      $second_date = strtotime('-10 day', $first_date);
+  
+      echo "console.log('First Date ".date('Y-m-d', $first_date)."');console.log('Second Date ".date('Y-m-d', $second_date)."');";
         ?>
     });
-    $("#removeComment").click(function(){
+    // $("tr").dblclick(function(){
+    //     console.log($(this).children().text());
+    // });
+    $("#cancelComment").click(function(){
         $('#thisTable tr:last').remove();
         $("#confirmComment").hide();
+        $("#cancelComment").hide();
         $("#addComment").show();
+        $("#addComment").focus();
     });
+    $(".confirmbtn").click(function(){
+        console.log($(this).parent().parent().attr("id"));
+        $(this).parent().parent().find("#date_posted").removeAttr("contenteditable");
+        $(this).parent().parent().find("#comment").removeAttr("contenteditable");
+        $(this).parent().parent().find("#comment_url").removeAttr("contenteditable");
+        $(this).parent().parent().find("#account").removeAttr("contenteditable");
+        $(this).parent().parent().find("#username").removeAttr("contenteditable");
+        $(this).parent().parent().find("#password").removeAttr("contenteditable");
+        $(this).parent().parent().find("#agent").removeAttr("contenteditable");
+        $(this).parent().parent().find("#backlink").removeAttr("contenteditable");//
+        $(this).parent().parent().find("#date_posted").removeAttr("style");
+        $(this).parent().parent().find("#comment").removeAttr("style");
+        $(this).parent().parent().find("#comment_url").removeAttr("style");
+        $(this).parent().parent().find("#account").removeAttr("style");
+        $(this).parent().parent().find("#username").removeAttr("style");
+        $(this).parent().parent().find("#password").removeAttr("style");
+        $(this).parent().parent().find("#agent").removeAttr("style");
+        $(this).parent().parent().find("#backlink").removeAttr("style");
+        $(this).parent().parent().find(".cancelbtn").hide();
+        $(this).parent().parent().find(".confirmbtn").hide();
+        $(this).parent().parent().find(".deletebtn").show();
+  
+        var data = {
+      id:$(this).parent().parent().attr("id"),
+      date:$(this).parent().parent().find('#date_posted').text(),
+      comment: $(this).parent().parent().find('#comment').text(),
+      url:$(this).parent().parent().find('#comment_url').text(),
+      account:$(this).parent().parent().find('#account').text(),
+      agent:$(this).parent().parent().find('#agent').text(),
+      backlink:$(this).parent().parent().find('#backlink').text()
+        };
+        console.log(data);
+    });
+    $(".editbtn").click(function(){
+        $(this).parent().parent().find("#date_posted").attr("contenteditable","true");
+        $(this).parent().parent().find("#comment").attr("contenteditable","true");
+        $(this).parent().parent().find("#comment_url").attr("contenteditable","true");
+        $(this).parent().parent().find("#account").attr("contenteditable","true");
+        $(this).parent().parent().find("#username").attr("contenteditable","true");
+        $(this).parent().parent().find("#password").attr("contenteditable","true");
+        $(this).parent().parent().find("#agent").attr("contenteditable","true");
+        $(this).parent().parent().find("#backlink").attr("contenteditable","true");//
+        $(this).parent().parent().find("#date_posted").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#comment").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#comment_url").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#account").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#username").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#password").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#agent").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find("#backlink").attr("style","background-color:#cccccc");
+        $(this).parent().parent().find(".cancelbtn").show();
+        $(this).parent().parent().find(".confirmbtn").show();
+        $(this).parent().parent().find(".deletebtn").hide();
+    });
+    $(".cancelbtn").click(function(){
+        $(this).parent().parent().find("#date_posted").removeAttr("contenteditable");
+        $(this).parent().parent().find("#comment").removeAttr("contenteditable");
+        $(this).parent().parent().find("#comment_url").removeAttr("contenteditable");
+        $(this).parent().parent().find("#account").removeAttr("contenteditable");
+        $(this).parent().parent().find("#username").removeAttr("contenteditable");
+        $(this).parent().parent().find("#password").removeAttr("contenteditable");
+        $(this).parent().parent().find("#agent").removeAttr("contenteditable");
+        $(this).parent().parent().find("#backlink").removeAttr("contenteditable");//
+        $(this).parent().parent().find("#date_posted").removeAttr("style");
+        $(this).parent().parent().find("#comment").removeAttr("style");
+        $(this).parent().parent().find("#comment_url").removeAttr("style");
+        $(this).parent().parent().find("#account").removeAttr("style");
+        $(this).parent().parent().find("#username").removeAttr("style");
+        $(this).parent().parent().find("#password").removeAttr("style");
+        $(this).parent().parent().find("#agent").removeAttr("style");
+        $(this).parent().parent().find("#backlink").removeAttr("style");
+        $(this).parent().parent().find(".cancelbtn").hide();
+        $(this).parent().parent().find(".confirmbtn").hide();
+        $(this).parent().parent().find(".deletebtn").show();
+    });
+    $(".deletebtn").click(function(){
+        var data = {
+      id:$(this).parent().parent("tr").attr("id")
+        };
+        deleteAjax(data);
+    });
+    function deleteAjax(data) {
+        
+        console.log(data);
+  
+        request=$.ajax({
+      type: "POST",
+      url: "deleteRow.php",
+      data: {data:data}
+      });
+        request.success(function (response) {
+      console.log("Success:"+data['id']);
+      $("#"+data['id']).hide();
+        });
+        request.fail(function (error) {
+      console.log(error);
+        });
+    }
     $("#confirmComment").click(function(e){
         e.preventDefault();
         var data = {
-            date:$('#date').text(),
-            comment: $('#comment').text(),
-            url:$('#url').text(),
-            account:$('#account').text(),
-            username:$('#username').text(),
-            password:$('#password').text(),
-            agent:$('#agent').text(),
-            backlink:$('#backlink').text(),
-            website_url:$('#website_url').val(),
-            thread_url:$('#thread_url').val(),
-            thread_id:$('#thread_id').val(),
-            media_id:$('#media_id').val()
+      date:$('#date_posted').text(),
+      comment: $('#comment').text(),
+      url:$('#comment_url').text(),
+      account:$('#account').text(),
+      username:$('#username').text(),
+      password:$('#password').text(),
+      agent:$('#agent').text(),
+      backlink:$('#backlink').text(),
+      website_url:$('#website_url').val(),
+      thread_url:$('#thread_url').val(),
+      thread_id:$('#thread_id').val(),
+      media_id:$('#media_id').val()
         };
+        ajax(data);
+    });
+
+    function ajax(data, url) {
+  
         console.log(data);
-        ajax(data);
-    });
-    $(document).on("dblclick",function(){
-        $target = $( event.target );
-        if($target.is("td")){
-            console.log("Correct");
-        }
-        });
-
-    $(document).on("submit" , "#inputComment" ,function(e){
-        e.preventDefault();
-        var data = {
-            date:$('#date').val(),
-            comment: $('#comment').val(),
-            url:$('#url').val(),
-            account:$('#account').val(),
-            username:$('#username').val(),
-            password:$('#password').val(),
-            agent:$('#agent').val(),
-            backlink:$('#backlink').val(),
-            website_url:$('#website_url').val(),
-            thread_url:$('#thread_url').val(),
-            thread_id:$('#thread_id').val(),
-            media_id:$('#media_id').val()
-        };
-        ajax(data);
-    });
-
-    function ajax(datas) {
-        var request;
-
-        console.log(datas);
-
+  
         request=$.ajax({
-            type: "POST",
-            url: "insert.php",
-            data: {data:datas}
-            });
+      type: "POST",
+      url: "insert.php",
+      data: {data:data}
+      });
         request.success(function (data) {
-            // console.log(datas);
-            // console.log("cracl");
-            // console.log(datas['date']);
-            // console.log("cracl");
-            //     document.getElementById("inputComment").reset();
-            $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("contenteditable","false");
-            $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("style","background-color:#fffffff");
-            $("#confirmComment").hide();
-            $("#addComment").show();
-            // $('#comment').attr("contenteditable","false");
-            // $('#url').attr("contenteditable","false");
-            // $('#account').attr("contenteditable","false");
-            // $('#username').attr("contenteditable","false");
-            // $('#password').attr("contenteditable","false");
-            // $('#agent').attr("contenteditable","false");
-            // $('#backlink').attr("contenteditable","false");
-            // $('#website_url').attr("contenteditable","false");
-            // $('#thread_url').attr("contenteditable","false");
-            // $('#thread_id').attr("contenteditable","false");
-            // $('#media_id').attr("contenteditable","false");
-
-                // $('#thisTable > tbody:last-child').append("<tr><td>"+datas['date']+"</td><td>"+datas['comment']+"</td><td>"+datas['url']+"</td><td>"+datas['account']+"</td><td>adamsNancy</td><td>BTs61313</td><td>"+datas['agent']+"</td><td>"+datas['backlink']+"</td></tr>");
-
-            console.log("cracl");
+      $('#date_posted, #comment, #comment_url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("contenteditable","false");
+      $('#date, #comment, #url, #account, #username, #password, #agent, #backlink, #website_url, #thread_url, #thread_id, #media_id').attr("style","background-color:#fffffff");
+      $(".deletebtn, .editbtn, .confirmbtn, .cancelbtn").removeAttr("disabled");
+      $("#confirmComment").hide();
+      $("#addComment").show();
         });
         request.fail(function (error) {
-            console.log(error);
+      console.log(error);
         });
     }
-
+});
 </script>
 
 
