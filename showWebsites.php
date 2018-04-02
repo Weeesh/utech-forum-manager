@@ -68,7 +68,25 @@ include("functions.php");
 <script>
 
   //knob
-  $(".knob").knob();
+    $(".knob").knob();
+  // $(document).ready(function(){
+  //   var request;
+
+  
+  
+  //   request = $.ajax({
+  //     type: "GET",
+  //     url: "./queries/get/getWebsites.php", 
+  //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  //   });
+  //   request.done(function (response) {
+  //     swal("Success!", "", "success");
+  //   });
+  //   request.fail(function (error) {
+  //     swal("Error!", "", "error");
+  //     ret=0;
+  //   });
+  // });
 
 </script>
 
