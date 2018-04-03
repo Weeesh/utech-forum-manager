@@ -2,6 +2,7 @@
 
 require("dbcon.php");
 include("functions.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -26,54 +27,52 @@ include("functions.php");
 <section id="container" class="">
     <?php include("header.php");?>
 
-    <?php include("sidebar.php");?>
+  <?php include("sidebar.php");?>
 
-    <!--main content start-->
-    <section id="main-content">
-        <section class="wrapper">
-        <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-user-md"></i> Thread</h3>
-                    <table class = "table">
-                        <thead>
-                            <th>Thread name</th>
-                            <th>Thread URL</th>
-                            <th>Genre</th>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $result = threadSearch($_POST['URLs']);
+  <!--main content start-->
+  <section id="main-content">
+      <section class="wrapper">
+      <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['account']." - ".$_POST['genre'].":".$_POST['niche']." - ".$_POST['media'];  ?> </h3>
+                
 
-                                while($vals = mysqli_fetch_array($result)){
-                                    echo "<tr>";
-                                        echo "<td>".$vals[0]."</td>";
-                                        echo "<td>".$vals[1]."</td>";
-                                        echo "<td>".$vals[2]."</td>";
-                                    echo "</tr>";
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php
+                            $result = allThread($_POST['media_id']);
+
+                            while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                echo "<form action = 'showComments.php' method = 'post'>";
+                                echo "<input type ='text' value = ".$vals['id']." name = 'thread_id' style='display:none;'>";
+                                echo "<input type ='text' value = ".$_POST['account']." name = 'account' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['acc_id']." name = 'acc_id' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['genre']." name = 'genre' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['genre_id']." name = 'genre_id' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['niche']." name = 'niche' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['niche_id']." name = 'niche_id' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['media']." name = 'media' style='display: none'>";
+                                echo "<input type ='text' value = ".$_POST['media_id']." name = 'media_id' style='display: none'>";
+                                echo "<input type ='submit' value = ".$vals['thread_name']." name = 'thread_name' class='btn btn-link' style='color:grey;text-decoration:none;'><span>".$vals['comment_no']." comments </span>";
+                                echo "</form>";
+                            }
+                        ?>
+                  
+                    <br><br>
+
             </div>
-            
-            <!-- page end-->
-        </section>
-    </section>
-    <!--main content end-->
+        
+          <!-- page end-->
+      </section>
+  </section>
+  <!--main content end-->
   
 </section>
 <!-- container section end -->
 <?php include("javascriptScripts.php") ?>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js">
+<script>
 
   //knob
   $(".knob").knob();
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
 
 </script>
 

@@ -21,4 +21,4 @@
 <link href="NiceAdmin/css/style-responsive.css" rel="stylesheet" />
 <link href="NiceAdmin/css/xcharts.min.css" rel=" stylesheet">
 <link href="NiceAdmin/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-<link href="DataTables/dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.16/css/jquery.dataTables.css"/>

@@ -1,15 +1,15 @@
 <!--sidebar start-->
 <aside>
-      <div id="sidebar"  class="nav-collapse ">
+      <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu">
-              <li class="active">
+              <li>
                   <a class="" href="index.php">
                       <i class="icon_house_alt"></i>
                       <span>Dashboard</span>
                   </a>
               </li>
-              <li class="sub-menu">
+              <!-- <li class="sub-menu">
                   <a href="javascript:;" class="">
                       
                       <span>Choose Account</span>
@@ -17,9 +17,15 @@
                   </a>
                   <ul class="sub">
                       <li><a class="" href="showGenre.php">Trackimo</a></li>
+<<<<<<< HEAD
                       <li><a class="" href="showGenre.php">Trackidog</a></li>
                       <li><a class="" href="showGenre.php">Some other website</a></li>
+=======
+>>>>>>> Dubadop
                   </ul>
+              </li> -->
+              <li class="active">
+                  <a class="" href="showWebsites.php">Choose Accounts</a>
               </li>
 
               

@@ -33,21 +33,22 @@ include("functions.php");
       <section class="wrapper">
       <div class="row">
             <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-user-md"></i> Genre</h3>
-                <form action = "transitionPage.php" method = "post">
+                <h3 class="page-header"><i class="fa fa-user-md"></i> <?php echo $_POST['account'];  ?></h3>
                 
                         <?php
-                            $result = allGenres();
+                            $result = allGenres($_POST['acc_id']);
 
-                            while($vals = mysqli_fetch_array($result)){
-                                
-                                echo "<input type ='submit' value = ".$vals[0]." name = 'URLs' class='btn btn-link' style='color:grey;text-decoration:none;'>";
-                                echo "<br>";
+                            while($vals = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                echo "<form action = 'showNiche.php' method = 'post'>";
+                                echo "<input type ='text' value = '".$vals['id']."' name ='genre_id' style='display: none'>";
+                                echo "<input type ='text' value = '".$_POST['account']."' name = 'account' style='display: none'>";
+                                echo "<input type ='text' value = '".$_POST['acc_id']."' name = 'acc_id' style='display: none'>";
+                                echo "<input type ='submit' value = '".$vals['name']."' name = 'genre' class='btn btn-link' style='color:grey;text-decoration:none;'>";
+                                echo "</form>";
                             }
                         ?>
                 	
                     <br><br>
-                </form>
 
             </div>
         </div>
@@ -65,9 +66,6 @@ include("functions.php");
 
   //knob
   $(".knob").knob();
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
 
 </script>
 
